@@ -109,7 +109,8 @@ void deletionFromEnd()
 {
     struct Node *prev = NULL;
     struct Node *end = head;
-    if(head==NULL){
+    if (head == NULL)
+    {
         printf("No element in linked list\n");
         return;
     }
@@ -118,13 +119,20 @@ void deletionFromEnd()
         prev = end;
         end = end->next;
     }
-    prev->next = NULL;
+    if (prev == NULL)
+    {
+        head = NULL;
+    }
+    else
+        prev->next = NULL;
+    tail = prev;
     free(end);
 }
 
 void deleteFromPosition(int position)
 {
-    if(head==NULL){
+    if (head == NULL)
+    {
         printf("No element in linked list\n");
         return;
     }
@@ -132,10 +140,10 @@ void deleteFromPosition(int position)
     struct Node *temp = NULL;
     for (int i = 0; i < position - 1; i++)
     {
-        if(prev->next!=NULL)
-        prev = prev->next;
+        if (prev->next != NULL)
+            prev = prev->next;
         else
-        printf("Position not valid\n");
+            printf("Position not valid\n");
     }
     temp = prev->next;
     prev->next = temp->next;
@@ -144,6 +152,9 @@ void deleteFromPosition(int position)
 
 void show()
 {
+    if(head==NULL){
+        printf("The list is empty");
+    }
     struct Node *temp = head;
     while (temp != NULL)
     {
